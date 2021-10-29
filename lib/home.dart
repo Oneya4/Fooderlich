@@ -42,16 +42,16 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit),
-            label: 'Card',
+            icon: Icon(Icons.explore),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_alarm),
-            label: 'Card2',
+            icon: Icon(Icons.book),
+            label: 'Recipes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_alarm),
-            label: 'Card3',
+            icon: Icon(Icons.list),
+            label: 'To Buy',
           ),
         ],
       ),
