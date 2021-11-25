@@ -34,7 +34,7 @@ class AppRouter extends RouterDelegate
     return Navigator(
       // 8
       key: navigatorKey,
-      // TODO: Add onPopPage
+      on
       // 9
       pages: [
         // TODO: Add SplashScreen
@@ -49,9 +49,26 @@ class AppRouter extends RouterDelegate
     );
   }
 
-  // TODO: Add _handlePopPage
+ bool _handlePopPage(
+  // 1
+  Route<dynamic> route,
+  // 2
+  result) {
+  // 3
+  if (!route.didPop(result)) {
+    // 4
+    return false;
+  }
 
-  // 10
+  // 5
+  // TODO: Handle Onboarding and splash
+  // TODO: Handle state when user closes grocery item screen
+  // TODO: Handle state when user closes profile screen
+  // TODO: Handle state when user closes WebView screen
+	// 6
+  return true;
+}
+
   @override
   Future<void> setNewRoutePath(configuration) async => null;
 }
