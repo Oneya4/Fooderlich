@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import '../models/models.dart';
 import '../screens/screens.dart';
 
-// 1
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-  // 2
   @override
   final GlobalKey<NavigatorState> navigatorKey;
 
-  // 3
   final AppStateManager appStateManager;
-  // 4
+  
   final GroceryManager groceryManager;
-  // 5
+  
   final ProfileManager profileManager;
 
   AppRouter({
@@ -22,20 +19,24 @@ class AppRouter extends RouterDelegate
     required this.groceryManager,
     required this.profileManager,
   }) : navigatorKey = GlobalKey<NavigatorState>() {
-    // TODO: Add Listeners
+    appStateManager.addListener(notifyListeners);
+groceryManager.addListener(notifyListeners);
+profileManager.addListener(notifyListeners);
   }
 
-  // TODO: Dispose listeners
-
-  // 6
+ @override
+void dispose() {
+	appStateManager.removeListener(notifyListeners);
+  groceryManager.removeListener(notifyListeners);
+	profileManager.removeListener(notifyListeners);
+  super.dispose();
+}
+  
   @override
-  Widget build(BuildContext context) {
-    // 7
+  Widget build(BuildContext context) { 
     return Navigator(
-      // 8
       key: navigatorKey,
-      on
-      // 9
+      onPopPage: _handlePopPage,
       pages: [
         // TODO: Add SplashScreen
         // TODO: Add LoginScreen
@@ -49,14 +50,8 @@ class AppRouter extends RouterDelegate
     );
   }
 
- bool _handlePopPage(
-  // 1
-  Route<dynamic> route,
-  // 2
-  result) {
-  // 3
+ bool _handlePopPage(Route<dynamic> route, result) {
   if (!route.didPop(result)) {
-    // 4
     return false;
   }
 
